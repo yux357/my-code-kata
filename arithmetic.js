@@ -223,39 +223,40 @@ function multiplicative(a, b) { /*输入两个字符串类型大数字*/
 
     var bArr = b.replace(/^0+/,'').split('').reverse(); /*利用倒序数组存储*/
 
-    var carry = 0; /*进位值*/
+    var mult = "0";
 
-    var multArr = [];
-
-    var len = Math.max(aArr.length, bArr.length); /*取得位数较大的一个数的位数*/
-
-    for(var i=0;i<=len-1;i++){
+    for(var i=0;i<aArr.length;i++){
 
         var digA = parseInt(aArr[i]) ? parseInt(aArr[i]) : 0;
 
-        //for(var j=0;j<bArr.length;j++)
+        for(var j=0;j<bArr.length;j++){
 
-        var digB = parseInt(bArr[i]) ? parseInt(bArr[i]) : 0;
+            var zero = '';
 
-        var digTotal = multiplicative(digA,b);
+            for(var k=0;k<i+j;k++){
 
-        if(i == len-1){/*排除'012' + '012'这样的情况*/
-
-            if(digTotal > 0){
-
-                sumArr.unshift(digTotal);
+                zero += '0';
             }
 
-            break;
+            var digB = parseInt(bArr[j]) ? parseInt(bArr[j]) : 0;
+
+            mult = add(mult,(digA * digB).toString() + zero);
         }
-
-        carry = Number(digTotal >= 10);
-
-        digTotal = digTotal % 10;
-
-        sumArr.unshift(digTotal);
-
     }
 
-    return sign + sumArr.join('');
+    return sign + mult;
 }
+
+var a = "162352323";
+
+var b = "-1523523535";
+
+console.log(a * b)
+
+var sTime = new Date().getTime();
+
+console.log(multiplicative(a,b));
+
+var eTime = new Date().getTime();
+
+console.log("用时:" + (eTime - sTime).toString() + "ms");
