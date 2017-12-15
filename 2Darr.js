@@ -54,21 +54,26 @@ function twoDArr(n,m){
 
     }
 
-    console.log(nArr)
+    console.log(arr)
 
     for(var i=0;i<nArr.length;i++){
 
         var index = i >= arr.length ? alen - i - 1 : i;
-
-        var cloneArr = arr[index].concat();
+        //
+        // if(index > 1){
+        //
+        //     var cloneArr = arr[index-1].concat();
+        // }
 
         for(var j=0;j<index;j++){
 
-            console.log(cloneArr)
+            var cloneArr = arr[j].concat();
 
-            nArr[index].splice(j,0,cloneArr[cloneArr.length - i]);
+            nArr[i].splice(j,0,cloneArr[cloneArr.length - i + j]);
 
-            nArr[index].splice(nArr[index].length - j,0,cloneArr[alen - i - 1]);
+            nArr[i].splice(nArr[i].length - j,0,cloneArr[alen - 2 * j + i - j - 1]);
+
+            //console.log(nArr)
 
         }
     }
@@ -77,4 +82,4 @@ function twoDArr(n,m){
 }
 
 
-console.log(twoDArr(8,0))
+console.log(twoDArr(5,0))
