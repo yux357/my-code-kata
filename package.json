@@ -1,0 +1,12 @@
+{
+    "name": "codeKata",
+    "version": "1.0.6",
+    "scripts": {
+        "build": "babel src -d lib",
+        "babel-version": "babel --version"
+    },
+    "devDependencies": {
+        "babel-polyfill": "^6.26.0",
+        "babel-preset-env": "^1.6.1"
+    }
+}
